@@ -298,99 +298,84 @@
 		</div>
 	</div>
 
-	<div class="display-single_element">
-		<form>
-		  <div class="row">
-		    <div class="col-md-6 mb-3">
-		      <label for="validationServer01">First name</label>
-		      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
-		    </div>
-		    <div class="col-md-6 mb-3">
-		      <label for="validationServer02">Last name</label>
-		      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
-		    </div>
-              
-              <div class="col-md-6 mb-3">
-		      <label for="validationServer02">Team Name</label>
-		      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Lavar Baller Brand" required>
-		    </div>
-              
-              <div class="col-md-6 mb-3">
-		      <label for="validationServer02">Player Number</label>
-		      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="6" required>
-		    </div>
-              
-              
-		  </div>
-		  <div class="row">
-		    
-              <div class="col-md-6 mb-3">
-		      <label for="validationServer03">Email</label>
-		      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="example@gmail.com" required>
-		      <div class="invalid-feedback">
-		        Please provide a valid email.
-		      </div>
-		    </div>
-              
-              <div class="col-md-6 mb-3">
-		      <label for="validationServer03">Phone Number</label>
-		      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Phone" required>
-		      <div class="invalid-feedback">
-		        Please provide a valid phone number.
-		      </div>
-		    </div>
-              
-		    <div class="col-md-6 mb-3">
-		      <label for="validationServer03">Address </label>
-		      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Address" required>
-		      <div class="invalid-feedback">
-		        Please provide a valid address.
-		      </div>
-		    </div>
-              
-              
-		    
-		  </div>
 
-		  <button class="btn btn-primary" type="submit">CREATE THIS TEAM!</button>
-		</form>
-	</div>
-	<!-- Defining states end -->
 
-</div>
-					</div> <!-- element-content ends -->
+<!-- Start of payment section -->
+                
+                
+<div class="display-single_element text_input">
+		
+		<div class="form-check">
+			<input id="radio-1" class="radio-custom form-check-input" name="radio-group" type="radio" checked>
+			<label class="form-check-label radio-custom-label">
+				Pay with your Card
+			</label>
+		</div>
+		<form >
+			<div class="form-group row">
+				<label for="example-text-input" class="col-md-12 col-form-label">Name of Card</label>
+				<div class="col-md-10">
+					<input class="form-control" type="text" placeholder="Name of Card">
 				</div>
-			</div> <!-- element main container ends -->
-		</div> <!-- Grid wrapper ends -->
-
-		<!-- FOOTER -->
-		<footer class="footer element-footer">
-		 <div class="container">
-			 <div class="row justify-content-center">
-				<div class="col-md-7">
-				 	<div class="text-center copyright ">
-						
-				 	</div>
-				</div>
-			 </div>
-		 </div>
-		</footer>
-	</div>
-
-	<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span class="bar-1"></span>
-						<span class="bar-2"></span>
-				</button>
-				<form action="">
-					<input type="text" autofocus name="search" placeholder="Search...">
-				</form>
 			</div>
+			<div class="form-group row">
+				<label for="example-search-input" class="col-md-12 col-form-label">Card Number</label>
+				<div class="col-md-10">
+					<input class="form-control" type="text" placeholder="#### . #### . ####">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="example-datetime-local-input" class="col-md-12 col-form-label">Expires On</label>
+				<div class="col-md-10">
+					<input class="form-control" type="datetime-local" value="2017-06-19T13:45:00" id="example-datetime-local-input">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="example-password-input" class="col-md-12 col-form-label">Security code</label>
+				<div class="col-md-10">
+					<input class="form-control" type="text" value="CVC" placeholder="CVC">
+					<i class="fa fa-question-circle helpText" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="example-location" class="col-md-12 col-form-label">Country</label>
+				<div class="col-md-10 selectOptions ">
+					<select name="country" class="form-control select-drop">
+						<option>Select Country</option>
+						<option>bangladesh</option>
+						<option>Usa</option>
+						<option>Singapore</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="example-postal-code" class="col-md-12 col-form-label">Postal code</label>
+				<div class="col-md-10">
+					<input class="form-control" type="text" placeholder="Postal code">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<div class="form-check ">
+						<input id="checkbox-1" class="checkbox-custom form-check-input" name="checkbox-1" type="checkbox" checked>
+						<label for="checkbox-1" class="checkbox-custom-label form-check-label">Remember this card</label>
+
+					</div>
+					<button class="btn btn-primary btn-default card-btn" type="submit">use this card</button>
+				</div>
+			</div>
+		</form>
+		<span class="or">or</span>
+		<div class="form-check">
+			<input id="radio-2" class="radio-custom form-check-input" name="radio-group" type="radio">
+			<label class="form-check-label radio-custom-label">
+				Pay with <img src="img/paypal.png" alt="">
+			</label>
 		</div>
 	</div>
-
+                
+            <!--END -->   
+                
 <!-- FOOTER -->
 	<footer class="footer footer-classic bg-dark">
 		<div class="container">
@@ -513,4 +498,3 @@
 </body>
 
 </html>
-
