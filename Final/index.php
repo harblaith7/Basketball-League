@@ -70,8 +70,8 @@
                         <div class="col-md-6 ">
                             <div class="section-title title-ex1">
                                 <h2 class="title-text">About Us</h2> </div>
-                            <p class="description"> Metus! Repellat itaque atque sagittis lectus, volutpat necessitatibus praesentium vestibulum atque quidem quaerat sapien. Ex dui aliqua orci dictum integer! est elit. Ipsam numquam. Accumsan explicabo vulputate quam aspernatur platea inventore iure vel ante, </p>
-                            <p class="description"> Lectus faucibus, ex eveniet! Lacus ipsum repellendus habitasse malesuada dictum dolorem purus iure congue quibusdam! Rutrum, hic itaque. Irure nihil! Ducimus? Primis rem. </p>
+                            <p class="description"> ANKLEBREAKER is Cornwall’s finest summer basketball league. It gives Cornwall basketball players the ability to form a team, and battle it out against other Cornwall basketball teams. This tournament will begin in the summer, and it is consisting of a regular season and a post season. Performances during the regular season will be the qualifying factor in determining whether the team advances to the post season. Teams whom have been qualified for the post season will battle another team in a one game series. The team match up will be determined by the team’s respective standings (like that done in that in the NBA). </p>
+                            <p class="description"> To make this league all that more fun, an ANKLEBREAKER member will be attending each game to record the total number of points, assists, and rebounds of each player in the game. Each players PPG, APG and RPG can be checked regularly on this website. These stats will be consistently updated after every game. </p>
                         </div>
                         <div class="col-md-6 ">
                             <div class="promo-video bg-image" style="background-image: url('img/about-promo.jpg');">
