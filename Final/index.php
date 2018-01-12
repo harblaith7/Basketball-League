@@ -89,7 +89,7 @@
                         <div class="col-md-7 col-lg-5 ">
                             <div class="section-title title-ex1">
                                 <h2 class="">Contact us!</h2>
-                                <p>Inventore cillum soluta inceptos eos platea, soluta class laoreet repellendus imperdiet optio.</p>
+                                <p>Contact us if you have any questions!</p>
                             </div>
                         </div>
                     </div>
@@ -104,19 +104,20 @@
                             </div>
                             <div class="media contact-media">
                                 <div class="icon icon-circle"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
-                                <div class="media-body"> +9623 442 1083 446
-                                    <br> +9613 573 3544 289 
+                                <div class="media-body"> 613 362 5418
+                                    <br>  
                                 </div>
                             </div>
                             <div class="media contact-media">
                                 <div class="icon icon-circle"> <i class="fa fa-envelope-o" aria-hidden="true"></i> </div>
-                                <div class="media-body"> info@onex.com
-                                    <br> contact@onex.com 
+                                <div class="media-body"> anklebreakerleague7@gmail.com
+                                    <br> 
                                 </div>
                             </div>
                         </div>
                         <!-- Left column -->
                         <!-- Right column -->
+                        
                         <div class="col-md-7 col-lg-8">
                             <!-- Contact Form Starts-->
                             <form class="">
