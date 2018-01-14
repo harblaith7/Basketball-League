@@ -33,19 +33,19 @@
 		        Please provide a valid email.
 		      </div>
 		    </div>
-		    <div class="col-md-3 mb-3">
-		      <label for="validationServer04">Phone Number</label>
-		      <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="Phone Number" required>
+		    <div class="col-md-6 mb-3">
+		      <label for="validationServer03">Phone</label>
+		      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Phone Number" required>
 		      <div class="invalid-feedback">
-		        Please provide a valid Phone Number.
+		        Please provide a valid phone number.
 		      </div>
 		    </div>
 		    
 		  </div>
 
-		  <button class="btn btn-primary" type="submit">Invite More Players</button>
+		  <button class="btn btn-primary" type="submit" >Invite More Players</button>
             
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit" >Submit</button>
 		</form>
 	</div>
     
