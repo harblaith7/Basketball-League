@@ -9,7 +9,7 @@
             <div class="grid-wrapper section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-12 element-content">
+                        <div class="col-12 col-lg-12 element-content" style="margin-bottom: 50px;">
         <!--        
                   CONTENT
                                 -->

@@ -73,14 +73,9 @@
                     <li class="nav-item dropdown drop_single ">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">Rules and upcoming schedule</a>
                         <ul class="dropdown-menu dd_first">
-                            <li><a href="page-aboutus.html">About Us</a></li>
-                            <li><a href="page-work-process.html">Work process</a></li>
-                            <li><a href="page-team.html">Team Members</a></li>
-                            <li><a href="page-member-details.html">Member Profile</a></li>
-                            <li><a href="page-faq.html">FAQ</a></li>
-                            <li><a href="page-contactus.html">Contact</a></li>
-                            <li><a href="page-comingsoon.html">Comingsoon page</a></li>
-                            <li><a href="page-error.html">404 page</a></li>
+                            <li><a href="rules.php">Rules</a></li>
+                            
+                            <li><a href="page-team.html">Upcoming Games</a></li>
                         </ul>
                     </li>
 
