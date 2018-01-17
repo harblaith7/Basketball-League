@@ -17,8 +17,8 @@
                                 <h2 class="heading-v1-title">Rules.</h2>
                             </div>
 
-                            <ol class="mb-3">
-                                <li>Teams must show up and be ready to play no longer than 5 minutes after the scheduled game time. Failing to meet this obligation will result in an automatic forfeit, and a team loss. No compensation will be given. </li>
+                            <ol class="mb-3" style="margin-top: 50px; color:#2d2626; ">
+                                <li>Teams must show up and be ready to play no longer than 5 minutes after the scheduled game time.  Failing to meet this obligation will result in an automatic forfeit, and a team loss. No compensation will be given. </li>
                                 <br>
                                 <li>A team must have at least 4 eligible players on the floor to play. Failure to meet this obligation will lead to a forfeit. No compensation will be given. </li>
                                 <br>
