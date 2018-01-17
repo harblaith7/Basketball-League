@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item dropdown drop_single ">
@@ -58,15 +58,8 @@
                     <li class="nav-item dropdown drop_single ">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">Teams</a>
                         <ul class="dropdown-menu dd_first">
-                            <li><a href="service.html">Services</a></li>
-                            <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Service Details</a>
-                                <ul class="dropdown-menu submenu">
-                                    <li><a href="service-details-left-sidebar.html">Service Left Sidebar</a></li>
-                                    <li><a href="service-details-right-sidebar.html">Service Right Sidebar</a></li>
-                                    <li><a href="service-details-fullwidth.html">Service Fullwidth</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="teams.php">Teams Standings</a></li>
+                            
                         </ul>
                     </li>
 
@@ -92,72 +85,7 @@
 
                     <li class=" dropdown megaDropMenu nav-item ">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">log in</a>
-                        <ul class="row dropdown-menu justify-content-md-between">
-                            <li class="">
-                                <h6>General Elements</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="basic-accordions.html">Accordions</a></li>
-                                    <li><a href="basic-alert.html">Alerts</a></li>
-                                    <li><a href="basic-animation.html">Animation</a></li>
-                                    <li><a href="basic-badge.html">Badge</a></li>
-                                    <li><a href="basic-background.html">Background</a></li>
-                                    <li><a href="basic-buttons.html">Buttons</a></li>
-                                    <li><a href="basic-buttons-group.html">Button Group</a></li>
-                                    <li><a href="basic-card.html">Card</a></li>
-                                    <li><a href="basic-carousel.html">Carousel</a></li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <h6>General Elements</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="basic-countdown.html">Countdown</a></li>
-                                    <li><a href="basic-counter.html">Counter</a></li>
-                                    <li><a href="basic-divider.html">Divider & Seperator</a></li>
-                                    <li><a href="basic-forms.html">Forms</a></li>
-                                    <li><a href="basic-heading.html">Heading</a></li>
-                                    <li><a href="basic-iconset.html">Iconset - FontAwesome </a></li>
-                                    <li><a href="basic-iconset-simple-lines.html">Iconset - Simple Line </a></li>
-                                    <li><a href="basic-icon-style.html">Icon Sizes & styles </a></li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <h6>General Elements</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="basic-image.html">Image</a></li>
-                                    <li><a href="basic-map.html">Map</a></li>
-                                    <li><a href="basic-modal.html">Modal</a></li>
-                                    <li><a href="basic-progressbar.html">Progress</a></li>
-                                    <li><a href="basic-tabs.html">Tabs & wizards</a></li>
-                                    <li><a href="basic-tables.html">Tables</a></li>
-                                    <li><a href="basic-typography.html">Typography</a></li>
-                                    <li><a href="basic-video.html">Video & Audio</a></li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <h6>Theme Kit Elements</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="kit-accordions.html">Accordions</a></li>
-                                    <li><a href="kit-breadcrumb.html">Breadcrumb</a></li>
-                                    <li><a href="kit-blog.html">Blogs</a></li>
-                                    <li><a href="kit-counter.html">Counter Up</a></li>
-                                    <li><a href="kit-contact.html">Contact</a></li>
-                                    <li><a href="kit-gallery.html">Gallery</a></li>
-                                    <li><a href="kit-navbar.html">Navbar</a></li>
-                                    <li><a href="kit-pagination.html">Pagination</a></li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <h6>Theme Kit Elements</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="kit-pricing.html">Pricing Table</a></li>
-                                    <li><a href="kit-progressbar.html">Theme Progressbar</a></li>
-                                    <li><a href="kit-section-title.html">Section Heading</a></li>
-                                    <li><a href="kit-service.html">Service contents</a></li>
-                                    <li><a href="kit-team.html">Team</a></li>
-                                    <li><a href="kit-testimonials.html">Testimonials</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        
                     </li>
                     <!-- header search -->
                     <li class="nav-item search_hook">
