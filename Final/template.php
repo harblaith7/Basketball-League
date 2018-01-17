@@ -3,7 +3,7 @@
 <body id="body" class="home-classic">
     <!-- HEADER -->
     <?php include "nav.php"; ?>
-    <div class="main-wrapper">
+    <div class="main-wrapper" style="margin-bottom: 20px;">
         <!--        
                   CONTENT
                                 -->
