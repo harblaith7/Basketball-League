@@ -9,14 +9,16 @@
         </div>
     </div>
 </div>
+<!-- HEADER -->
 <header id="pageTop" class="header">
-    		<!-- NAVBAR -->
-		<nav class="navbar navbar-expand-md main-nav bg-white">
-			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md main-nav bg-white">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="burger-menu icon-toggle"><i class="icon-menu icons"></i></span>
 				</button>
-				<a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
 					<svg
 					xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,8 +30,7 @@
 				   </svg>
 				</a>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
@@ -51,8 +52,7 @@
                     </li>
                 </ul>
             </div>
-				</div>
-				<!-- header search ends-->
-			</div>
-		</nav>
+            <!-- header search ends-->
+        </div>
+    </nav>
 </header>
