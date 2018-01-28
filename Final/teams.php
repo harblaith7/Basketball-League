@@ -37,7 +37,7 @@
                 <!-- section title ends -->
                 <div class="row ">
                     <div class="col-md-6">
-                        <div class="media blog-media" data-toggle="modal" data-target="#exampleModalLong2">
+                        <div class="media blog-media" data-toggle="modal" data-target="#teamInfo">
                             <img class="d-flex" src="img/blog/b1.jpg" alt="Generic placeholder image">
                             <div class="circle">
                                 <h5 class="day">14</h5>
@@ -59,7 +59,7 @@
             </div>
         </section>
         <!-- Modal -->
-        <div class="modal fade " id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+        <div class="modal fade " id="teamInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-body">
