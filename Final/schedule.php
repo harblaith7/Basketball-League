@@ -51,30 +51,15 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{x.game_id}}</td>
+                                    <th>{{x.game_id}}</th>
                                     <td><strong>{{x.team1}}</strong>&nbsp;v.&nbsp;<strong>{{x.team2}}</strong></td>
+									<td>{{x.date}}</td>
                                     <td>{{x.game_start}}</td>
                                     <td>{{x.game_end}}</td>
                                     <td>{{x.location}}</td>
 									<td>{{x.results}}</td>
                                 </tr>
                             </tbody>
-                        </table>
-
-                        <!-- table-inverse -->
-                        <table class="table table-inverse">
-
-                        </table>
-
-                        <!-- table-striped -->
-                        <table class="table table-striped">
-
-                        </table>
-
-                        <!-- table-bordered -->
-                        <table class="table table-bordered">
-
                         </table>
                     </div>
                 </div>

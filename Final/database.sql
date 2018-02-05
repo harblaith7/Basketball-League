@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 	`game_id` INT(11) NOT NULL AUTO_INCREMENT , 
 	`team1` VARCHAR(50) NOT NULL , 
 	`team2` VARCHAR(50) NOT NULL , 
+	`date` VARCHAR(50) NOT NULL , 	
 	`game_start` VARCHAR(50) NOT NULL DEFAULT `TBD` , 
 	`game_end` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
 	`location` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
