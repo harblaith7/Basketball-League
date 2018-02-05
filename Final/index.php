@@ -112,6 +112,9 @@
 										</div>
 									</div>
 									<form>
+										<div id="registerError" class="hidden">
+											
+										</div>
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">Package</label>
 											<div class="col-md-10">
@@ -145,7 +148,7 @@
 										<div class="form-group row">
 											<label for="example-search-input" class="col-md-2 col-form-label">Phone Number</label>
 											<div class="col-md-10">
-												<input class="form-control" type="text" id="phoneNumber" pattern="/^\d+$/" placeholder="#### . #### . ####">
+												<input class="form-control" type="text" id="phoneNumber" placeholder="###-###-####">
 											</div>
 										</div>
 										<div class="form-group row">
