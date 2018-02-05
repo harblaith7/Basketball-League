@@ -1,7 +1,7 @@
 <html lang="en">
 <?php include "head.php"; ?>
 
-<body id="body" class="home-classic">
+<body id="body" class="home-classic" ng-app="leagueApp" ng-controller="leagueController">
     <!-- HEADER -->
     <?php include "nav.php"; ?>
     <div class="main-wrapper">
@@ -10,12 +10,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-12 element-content">
-        <!--        
-                  CONTENT
-                                -->
-    
-        <!-- FOOTER -->
-         </div>
+							<!--        
+									  CONTENT
+													-->
+						</div>
                     </div>
                     <!-- element-content ends -->
                 </div>
