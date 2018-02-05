@@ -24,9 +24,8 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-8">
-								<h2>TITLE </h2>
+								<h2>Player Info </h2>
 								<hr class="hr_narrow  hr_color">
-								<p>DESCRIPTION</p>
 							</div>
 						</div>
 					</div>
@@ -42,51 +41,9 @@
 						</div>
 						<div class="col-lg-9 col-md-8">
 							<div class="member_designation">
-								<h2>Bodrum Salvador</h2> <span>Co Founder</span> </div>
+								<h2>{{x.first_name}} {{x.last_name}}</h2> <span>{{x.team}}</span> </div>
 							<div class="member_desc">
-								<p> Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt.ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. </p>
-								<ul class="styled_list">
-									<li class=""><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Morbi fermentum felis nec</li>
-									<li class=""><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Morbi fermentum felis nec gravida tempus.</li>
-									<li class=""><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Morbi fermentum felis nec gravida</li>
-								</ul>
-							</div>
-							<div class="bg-image " style="background-image: url('img/slider/sl1.jpg');">
-								<div class="member_contact">
-									<div class="row">
-										<div class="col-lg-4  mb-3 mb-lg-0">
-											<div class="media-box">
-												<div class="media-icon"> <i class="fa fa-tablet" aria-hidden="true"></i> </div>
-												<div class="media-content">
-													<h5>Phone</h5>
-													<p><a href="callto">(+1) 251-235-3256</a></p>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4  mb-3 mb-lg-0">
-											<div class="media-box">
-												<div class="media-icon"> <i class="fa fa-envelope-o" aria-hidden="true"></i> </div>
-												<div class="media-content">
-													<h5>Email</h5>
-													<p><a href="mailto">info@example.com</a></p>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="social-icons">
-												<button class="btn btn-social outlined"><i class="fa fa-facebook-f"></i></button>
-												<button class="btn btn-social outlined"><i class="fa fa-twitter"></i></button>
-												<button class="btn btn-social outlined"><i class="fa fa-linkedin"></i></button>
-												<button class="btn btn-social outlined"><i class="fa fa-pinterest-p"></i></button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="member_desc">
-								<h4>Persional Information</h4>
-								<p> Vinteger eu libero rutrum, imperdiet arcueniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit volup tatem. accusantium doloremque laudantium. </p>
-								<h4>Skills</h4>
+								<h4>Stats</h4>
 								<!-- progressbar starts -->
 								<div class="progress-holder">
 									<div class="barWrapper"> <span class="progressText"><B>Javascript</B></span>
@@ -107,16 +64,6 @@
 									</div>
 								</div>
 								<!-- progressbar ends -->
-							</div>
-							<div class="row ">
-								<div class="col-lg-6 member_desc">
-									<h4>Nec nisl iaculis pulv</h4>
-									<p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium. </p>
-								</div>
-								<div class="col-lg-6 member_desc">
-									<h4>Aesent nec nisl</h4>
-									<p> Cepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium </p>
-								</div>
 							</div>
 						</div>
 					</div>
