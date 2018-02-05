@@ -46,16 +46,18 @@
                                     <th>Start Time</th>
                                     <th>End Time</th>
                                     <th>Location</th>
+									<th>Results</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>###</td>
-                                    <td>###</td>
-                                    <td>###</td>
-                                    <td>###</td>
-                                    <td>###</td>
+                                    <td>{{x.game_id}}</td>
+                                    <td><strong>{{x.team1}}</strong>&nbsp;v.&nbsp;<strong>{{x.team2}}</strong></td>
+                                    <td>{{x.game_start}}</td>
+                                    <td>{{x.game_end}}</td>
+                                    <td>{{x.location}}</td>
+									<td>{{x.results}}</td>
                                 </tr>
                             </tbody>
                         </table>
