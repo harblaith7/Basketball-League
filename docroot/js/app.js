@@ -81,7 +81,7 @@ app.controller('leagueController', function ($scope, $http) {
 			errorReporting("Team name cannot be longer than 20 characters");
 			return;
 		}
-		$http.post("php/createTeam.php", {
+		$http.post("php/api.php?route=createTeam", {
 			package: package
 			, first_name: firstName
 			, last_name: lastName
@@ -101,7 +101,7 @@ app.controller('leagueController', function ($scope, $http) {
 		});
 	}
 	$scope.getTeams = function (team_id) {
-		$http.post("php/readTeams.php", {
+		$http.post("php/api.php?route=readTeams", {
 			type: "request"
 			, team_id: team_id
 		}).success(function (data) {
@@ -112,7 +112,7 @@ app.controller('leagueController', function ($scope, $http) {
 		window.open('team.php?id=' + team_id + '&standing=' + index, "_self");
 	}
 	$scope.getSchedule = function (team_id) {
-		$http.post("php/readSchedule.php", {
+		$http.post("php/api.php?route=readSchedule", {
 			type: "request"
 			, team_id: team_id
 		}).success(function (data) {
@@ -120,7 +120,7 @@ app.controller('leagueController', function ($scope, $http) {
 		});
 	}
 	$scope.getStats = function (team_id) {
-		$http.post("php/readPlayerStats.php", {
+		$http.post("php/api.php?route=readPlayerStats", {
 			type: 'request'
 			, team_id: team_id
 		}).success(function (data) {
@@ -132,14 +132,14 @@ app.controller('leagueController', function ($scope, $http) {
 	$scope.login = function () {
 		var loginEmail = document.getElementById("loginEmail").value;
 		var loginPassword = document.getElementById("loginPassword").value;
-		$http.post("php/loginRequest.php", {
+		$http.post("php/api.php?route=loginRequest", {
 			email: loginEmail,
 			password: loginPassword
 		}).success(function (data) {
 			if(data === "success"){
 				window.open("dashboard.php", "_self");
 			}
-			document.getElementById("loginResponse").innerHTML = data;
+				document.getElementById("loginResponse").innerHTML = data;
 		});
 	}
 });

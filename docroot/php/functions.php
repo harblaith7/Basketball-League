@@ -1,4 +1,35 @@
 <?php 
+$connect = mysqli_connect("localhost", "root", "", "anklebreaker");
+date_default_timezone_set('US/Eastern');
+$date = date("Y-m-d", strtotime("now"));
+$time = date("H:i:s", strtotime("now"));
+$timestamp = $date . 'T' . $time . '-04:00';
+
+// Checks if team leader is not in another team
+function team_leader_check($email){
+	global $connect;
+	$sql = "SELECT * FROM players WHERE email = '$email'";
+	$result = mysqli_query($connect, $sql);		
+	$count = mysqli_num_rows($result);
+	if ($count > "0"){
+		return "A team leader cannot be in multiple teams";
+		} else {
+		return true;
+	}
+}
+// Checks if team name is unique
+function team_name_check($team_name){
+	global $connect;
+	$sql = "SELECT * FROM teams WHERE team_name = '$team_name'";	
+	$result = mysqli_query($connect, $sql);
+	$count = mysqli_num_rows($result);
+	if ($count > "0"){
+		return "Team name must be unique, check the teams page to see taken names. <a href='teams.php'>Click here.</a>";
+	} else {
+	return true;
+	}
+}
+
 function fetchTeamInfo($team_id) {
 	if($team_id === null){
 		$sql = "SELECT * FROM teams";
@@ -27,7 +58,6 @@ function fetchTeamInfo($team_id) {
 	}
 	return $output;
 }
-
 
 function fetchSchedule($team_id) {
 	if($team_id === null){
@@ -126,8 +156,7 @@ function loginRequest($email, $password){
 		}
 	} else {
 		return "Email is in correct";
-	}
-	
+	}	
 }
 
 ?>

@@ -5,4 +5,4 @@ if(!isset($_SESSION['admin_id'])){
 }
 ?>
 
-<a href="php/logout.php">Log Out</a>
+<a href="php/api.php?route=logout">Log Out</a>
