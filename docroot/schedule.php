@@ -4,7 +4,7 @@
     <?php include "head.php"?>
 </head>
 
-<body id="body" class="b-element">
+<body id="body" class="b-element" ng-app="leagueApp" ng-controller="leagueController">
     <!-- Preloader -->
     <div id="preloader" class="smooth-loader-wrapper">
         <div class="smooth-loader">
@@ -44,20 +44,20 @@
                                     <th>Teams</th>
                                     <th>Date</th>
                                     <th>Start Time</th>
-                                    <th>End Time</th>
                                     <th>Location</th>
 									<th>Results</th>
+									<th>Winner</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody ng-init="getSchedule()">
+                                <tr ng-repeat="x in schedule">
                                     <th>{{x.game_id}}</th>
-                                    <td><strong>{{x.team1}}</strong>&nbsp;v.&nbsp;<strong>{{x.team2}}</strong></td>
+                                    <td><strong>{{x.team1_name}}</strong>&nbsp;v.&nbsp;<strong>{{x.team2_name}}</strong></td>
 									<td>{{x.date}}</td>
                                     <td>{{x.game_start}}</td>
-                                    <td>{{x.game_end}}</td>
                                     <td>{{x.location}}</td>
-									<td>{{x.results}}</td>
+									<td>{{x.team1_result}} : {{x.team2_result}}</td>
+									<td><strong>{{x.winner_name}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>

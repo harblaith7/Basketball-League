@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 	`team1` VARCHAR(50) NOT NULL , 
 	`team2` VARCHAR(50) NOT NULL , 
 	`date` VARCHAR(50) NOT NULL , 	
-	`game_start` VARCHAR(50) NOT NULL DEFAULT `TBD` , 
-	`game_end` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
+	`game_start` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
 	`location` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
-	`results` VARCHAR(50) NOT NULL DEFAULT `TBD`, 	
+	`team1_result` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
+	`team2_result` VARCHAR(50) NOT NULL DEFAULT `TBD` , 	
 	PRIMARY KEY (`game_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
