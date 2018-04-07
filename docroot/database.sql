@@ -1,4 +1,4 @@
-CREATE TABLE `admin_users` (
+CREATE TABLE IF NOT EXISTS `admin_users` (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_name` varchar(100) NOT NULL,
   `admin_email` varchar(100) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `players` (
+CREATE TABLE IF NOT EXISTS `players` (
   `player_id` int(11) NOT NULL,
   `first_name` varchar(11) NOT NULL,
   `last_name` varchar(11) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `players` (
   PRIMARY KEY (`player_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `player_stats` (
+CREATE TABLE IF NOT EXISTS `player_stats` (
   `record_id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `player_stats` (
   PRIMARY KEY (`record_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `schedule` (
+CREATE TABLE IF NOT EXISTS `schedule` (
   `game_id` int(11) NOT NULL AUTO_INCREMENT,
   `team1_id` varchar(50) NOT NULL,
   `team2_id` varchar(50) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `schedule` (
   PRIMARY KEY (`game_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `team_player` (
+CREATE TABLE IF NOT EXISTS `team_player` (
   `connection_id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `team_player` (
   PRIMARY KEY (`connection_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `team_player` (
+CREATE TABLE IF NOT EXISTS `team_player` (
   `connection_id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `team_player` (
   PRIMARY KEY (`connection_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `teams` (
+CREATE TABLE IF NOT EXISTS `teams` (
   `team_id` int(11) NOT NULL AUTO_INCREMENT,
   `team_name` varchar(20) NOT NULL,
   `team_image` varchar(100) NOT NULL DEFAULT 'http://anklebreaker.ca/img/teams/default.png',
