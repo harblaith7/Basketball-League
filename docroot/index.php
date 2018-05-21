@@ -113,7 +113,7 @@
 									</div>
 									<form>
 										<div id="registerError" class="hidden">
-											
+
 										</div>
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">Package</label>
@@ -184,10 +184,7 @@
 							<p class="description"> To make this league all that more fun, an ANKLEBREAKER member will be attending each game to record the total number of points, assists, and rebounds of each player in the game. Each players PPG, APG and RPG can be checked regularly on this website. These stats will be consistently updated after every game. </p>
 						</div>
 						<div class="col-md-6 ">
-							<div class="promo-video bg-image" style="background-image: url('img/about-promo.jpg');">
-								<div class="video-button video-box">
-									<a href="javascript:void(0)"> <i class="fa fa-play play-icon" aria-hidden="true" data-video="https://www.youtube.com/embed/g3-VxLQO7do?autoplay=1"></i> <span class="hide">Watch Video</span> </a>
-								</div>
+							<img class="img-responsive" src="img/promo.jpg" style="width: 100%">
 							</div>
 						</div>
 					</div>

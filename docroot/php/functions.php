@@ -1,4 +1,4 @@
-<?php 
+<?php
 $connect = mysqli_connect("localhost", "root", "", "anklebreaker");
 date_default_timezone_set('US/Eastern');
 $date = date("Y-m-d", strtotime("now"));
@@ -9,7 +9,7 @@ $timestamp = $date . 'T' . $time . '-04:00';
 function team_leader_check($email){
 	global $connect;
 	$sql = "SELECT * FROM players WHERE email = '$email'";
-	$result = mysqli_query($connect, $sql);		
+	$result = mysqli_query($connect, $sql);
 	$count = mysqli_num_rows($result);
 	if ($count > "0"){
 		return "A team leader cannot be in multiple teams";
@@ -20,7 +20,7 @@ function team_leader_check($email){
 // Checks if team name is unique
 function team_name_check($team_name){
 	global $connect;
-	$sql = "SELECT * FROM teams WHERE team_name = '$team_name'";	
+	$sql = "SELECT * FROM teams WHERE team_name = '$team_name'";
 	$result = mysqli_query($connect, $sql);
 	$count = mysqli_num_rows($result);
 	if ($count > "0"){
@@ -38,7 +38,7 @@ function fetchTeamInfo($team_id) {
 	}
 	global $connect;
 	$result = mysqli_query($connect, $sql);
-	while($team = mysqli_fetch_array($result)){	
+	while($team = mysqli_fetch_array($result)){
 		$team_id = $team['team_id'];
 		$sql2 = "SELECT * FROM team_player WHERE team_id = '$team_id'";
 		$result2 = mysqli_query($connect, $sql2);
@@ -49,7 +49,7 @@ function fetchTeamInfo($team_id) {
 		$sql3 = "SELECT * FROM schedule WHERE winner_id = '$team_id'";
 		$res3 = mysqli_query($connect, $sql3);
 		$team['wins'] = mysqli_num_rows($res3);
-		
+
 		$sql4 = "SELECT * FROM schedule WHERE played = 'Y' AND winner_id <> '$team_id' AND team1_id = '$team_id' UNION SELECT * FROM schedule WHERE played = 'Y' AND winner_id <> '$team_id' AND team2_id = '$team_id'";
 		$res4 = mysqli_query($connect, $sql4);
 		$team['loses'] = mysqli_num_rows($res4);
@@ -73,17 +73,17 @@ function fetchSchedule($team_id) {
 		while($row = mysqli_fetch_array($result)){
 			$team1 = $row['team1_id'];
 			$team2 = $row['team2_id'];
-			
+
 			$sql2 = "SELECT team_name FROM teams WHERE team_id = '$team1'";
 			$res2 = mysqli_query($connect, $sql2);
 			$row2 = mysqli_fetch_array($res2);
 			$row['team1_name'] = $row2['team_name'];
-			
+
 			$sql3 = "SELECT team_name FROM teams WHERE team_id = '$team2'";
 			$res3 = mysqli_query($connect, $sql3);
 			$row3 = mysqli_fetch_array($res3);
 			$row['team2_name'] = $row3['team_name'];
-			
+
 			$winner = $row['winner_id'];
 			if ($winner !== "TBD"){
 				$sql4 = "SELECT team_name FROM teams WHERE team_id = '$winner'";
@@ -93,7 +93,7 @@ function fetchSchedule($team_id) {
 			} else {
 				$row['winner_name'] = 'TBD';
 			}
-			
+
 			if($team_id !== null){
 				if($team_id === $winner){
 					$row['result'] = 'W';
@@ -156,7 +156,182 @@ function loginRequest($email, $password){
 		}
 	} else {
 		return "Email is in correct";
-	}	
+	}
 }
 
+function adminCreateTeam($team_name){
+	global $connect;
+	$sql = "INSERT INTO teams(team_name) VALUES('$team_name')";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminUpdateTeam($team_id, $team_name) {
+	global $connect;
+	$sql = "UPDATE teams SET team_name = '$team_name' WHERE team_id = '$team_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminDeleteTeam($team_id){
+	global $connect;
+	$sql = "DELETE FROM teams WHERE team_id = '$team_id'";
+	if(mysqli_query($connect, $sql)){
+		return adminDeleteTeamPlayerConnection($team_id);
+	}
+}
+
+function adminDeleteTeamPlayerConnection($team_id){
+	global $connect;
+	$sql = "DELETE FROM team_player WHERE team_id = '$team_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminCreateSchedule($team1, $team2, $team1Result, $team2Result, $scheduleDate, $scheduleTime, $scheduleLocation){
+	global $connect;
+	if($scheduleDate == null){
+		$scheduleDate = "TBD";
+	}
+	if(is_numeric($team1Result) && is_numeric($team2Result)){
+		$played = "Y";
+		if($team1Result > $team2Result){
+			$winner_id = $team1;
+		} else {
+			$winner_id = $team2;
+		}
+	} else {
+		$team1Result = "TBD";
+		$team2Result = "TBD";
+		$played = "N";
+		$winner_id = "TBD";
+	}
+	if($scheduleTime == null){
+		$scheduleTime = "TBD";
+	}
+	if($scheduleLocation == null){
+		$scheduleLocation = "TBD";
+	}
+	$sql = "INSERT INTO schedule(team1_id, team2_id, date, game_start, location, team1_result, team2_result, winner_id, played) VALUES('$team1', '$team2', '$scheduleDate', '$scheduleTime', '$scheduleLocation', '$team1Result', '$team2Result', '$winner_id', '$played')";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminUpdateSchedule($game_id, $team1, $team2, $team1Result, $team2Result, $scheduleDate, $scheduleTime, $scheduleLocation) {
+	global $connect;
+	if($scheduleDate == null){
+		$scheduleDate = "TBD";
+	}
+	if(is_numeric($team1Result) && is_numeric($team2Result)){
+		$played = "Y";
+		if($team1Result > $team2Result){
+			$winner_id = $team1;
+		} else {
+			$winner_id = $team2;
+		}
+	} else {
+		$team1Result = "TBD";
+		$team2Result = "TBD";
+		$played = "N";
+		$winner_id = null;
+	}
+	if($scheduleTime == null){
+		$scheduleTime = "TBD";
+	}
+	if($scheduleLocation == null){
+		$scheduleLocation = "TBD";
+	}
+	$sql = "UPDATE schedule SET team1_id = '$team1', team2_id = '$team2', date = '$scheduleDate', game_start = '$scheduleTime', location = '$scheduleLocation', team1_result = '$team1Result', team2_result = '$team2Result', winner_id = '$winner_id', played = '$played' WHERE game_id = '$game_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminDeleteSchedule($game_id){
+	global $connect;
+	$sql = "DELETE FROM schedule WHERE game_id = '$game_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminCreatePlayer($player_first_name, $player_last_name, $email, $address, $phone_number, $team_id, $player_number) {
+	global $connect;
+	$sql = "INSERT INTO players(first_name, last_name, email, address, phone_number) VALUES('$player_first_name', '$player_last_name', '$email', '$address', '$phone_number')";
+	if(mysqli_query($connect, $sql)){
+		$player_id = mysqli_insert_id($connect);
+		return createTeamPlayerConnection(mysqli_insert_id($connect), $player_number, $team_id);
+	}
+}
+
+function createTeamPlayerConnection($player_id, $player_number, $team_id){
+	global $connect;
+	$sql = "INSERT INTO team_player(player_id, team_id, player_number) VALUES('$player_id', '$team_id', '$player_number')";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminReadPlayers(){
+	global $connect;
+	$sql = "SELECT * FROM players";
+	$result = mysqli_query($connect, $sql);
+	while($row = mysqli_fetch_array($result)){
+		$row['team_id'] = fetchPlayerTeam($row['player_id'])['team_id'];
+		$row['player_number'] = fetchPlayerTeam($row['player_id'])['player_number'];
+		$row['team_name'] = fetchPlayerTeamName($row['team_id'])['team_name'];
+		$output[] = $row;
+	}
+	return $output;
+}
+
+function fetchPlayerTeam($player_id){
+	global $connect;
+	$sql = "SELECT team_id, player_number FROM team_player WHERE player_id = '$player_id'";
+	$result = mysqli_query($connect, $sql);
+	return mysqli_fetch_array($result);
+}
+
+function fetchPlayerTeamName($team_id){
+	global $connect;
+	$sql = "SELECT team_name FROM teams WHERE team_id = '$team_id'";
+	$result = mysqli_query($connect, $sql);
+	return mysqli_fetch_array($result);
+}
+
+function adminUpdatePlayer($player_id, $player_first_name, $player_last_name, $email, $address, $phone_number, $team_id, $player_number){
+	global $connect;
+	$sql = "UPDATE players SET first_name = '$player_first_name', last_name = '$player_last_name', email = '$email', address = '$address', phone_number = '$phone_number' WHERE player_id = '$player_id'";
+	if(mysqli_query($connect, $sql)){
+		return changePlayerTeam($player_id, $team_id, $player_number);
+	}
+}
+
+function changePlayerTeam($player_id, $team_id, $player_number){
+	global $connect;
+	$sql = "UPDATE team_player SET team_id = '$team_id', player_number = '$player_number' WHERE player_id = '$player_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminDeletePlayer($player_id){
+	global $connect;
+	$sql = "DELETE FROM players WHERE player_id = '$player_id'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function adminCreateStat($game_id, $player_id, $points, $assists, $rebounds, $blocks, $turnovers){
+	global $connect;
+	$sql = "INSERT INTO player_stats(player_id, game_id, points, assists, rebounds, blocks, turn_overs) VALUES( '$player_id', '$game_id', '$points', '$assists', '$rebounds', '$blocks', '$turnovers')";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
 ?>
