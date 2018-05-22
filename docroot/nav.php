@@ -19,7 +19,7 @@
 					<span class="burger-menu icon-toggle"><i class="icon-menu icons"></i></span>
 				</button>
             <a class="navbar-brand" href="index.php">
-				      <img src="img/logo.png" class="img-responsive" height="200px">
+				      <img src="img/logo.png" class="img-fluid"style="width: 250px;">
 				    </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
