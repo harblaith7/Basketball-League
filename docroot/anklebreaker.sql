@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 22, 2018 at 12:30 AM
+-- Generation Time: May 27, 2018 at 01:12 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -119,6 +119,27 @@ CREATE TABLE `team_player` (
   `player_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unpaid_memberships`
+--
+
+CREATE TABLE `unpaid_memberships` (
+  `record_id` int(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone_number` varchar(11) NOT NULL,
+  `team_name` varchar(100) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  `player_number` int(11) NOT NULL,
+  `order_type` varchar(100) NOT NULL,
+  `paid` varchar(10) NOT NULL DEFAULT 'false',
+  `timestamp` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -160,6 +181,12 @@ ALTER TABLE `team_player`
   ADD PRIMARY KEY (`connection_id`);
 
 --
+-- Indexes for table `unpaid_memberships`
+--
+ALTER TABLE `unpaid_memberships`
+  ADD PRIMARY KEY (`record_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -198,6 +225,12 @@ ALTER TABLE `teams`
 --
 ALTER TABLE `team_player`
   MODIFY `connection_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `unpaid_memberships`
+--
+ALTER TABLE `unpaid_memberships`
+  MODIFY `record_id` int(100) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
