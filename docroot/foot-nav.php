@@ -8,8 +8,8 @@
                         <path fill-rule="evenodd" class="path-1" fill="rgb(12, 198, 82)" d="M22.000,29.113 C20.270,27.358 9.000,15.934 9.000,15.934 L11.000,13.907 C11.000,13.907 21.939,24.996 23.000,26.071 C24.061,27.147 27.000,26.909 27.000,25.058 C27.000,23.206 27.000,8.001 27.000,5.797 C27.000,3.593 24.105,2.649 23.000,3.770 C21.895,4.890 20.000,6.999 20.000,6.999 L18.000,5.000 C18.000,5.000 20.503,2.126 22.000,0.729 C23.497,-0.670 30.000,-0.474 30.000,4.784 C30.000,10.041 30.000,19.883 30.000,25.058 C30.000,30.233 23.730,30.867 22.000,29.113 ZM19.000,16.093 C19.000,16.093 8.061,5.003 7.000,3.928 C5.939,2.852 3.000,3.090 3.000,4.941 C3.000,6.794 3.000,21.999 3.000,24.202 C3.000,26.406 5.895,27.351 7.000,26.230 C8.105,25.109 10.000,22.999 10.000,22.999 L12.000,24.999 C12.000,24.999 9.497,27.873 8.000,29.271 C6.503,30.669 -0.000,30.474 -0.000,25.216 C-0.000,19.959 -0.000,10.117 -0.000,4.941 C-0.000,-0.234 6.270,-0.867 8.000,0.887 C9.730,2.641 21.000,14.065 21.000,14.065 L19.000,16.093 Z" /> </a>
                     <p> Follow us on social media! </p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/AnkleBreakerCornwall/" class="btn btn-social btn-social-o facebook"> <i class="fa fa-facebook-f"></i> </a>
-                        <a href="https://twitter.com/anklebreaker" class="btn btn-social btn-social-o twitter"> <i class="fa fa-twitter"></i> </a>
+                        <a target="_blank" href="https://www.facebook.com/AnkleBreakerCornwall/" class="btn btn-social btn-social-o facebook"> <i class="fa fa-facebook-f"></i> </a>
+                        <a target="_blank" href="https://twitter.com/anklebreaker" class="btn btn-social btn-social-o twitter"> <i class="fa fa-twitter"></i> </a>
                     </div>
                 </div>
             </div>
