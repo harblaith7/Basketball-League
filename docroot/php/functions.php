@@ -26,7 +26,7 @@ function team_name_check($team_name){
 	if ($count > "0"){
 		return "Team name must be unique, check the teams page to see taken names. <a href='teams.php'>Click here.</a>";
 	} else {
-	return true;
+		return true;
 	}
 }
 
@@ -38,6 +38,7 @@ function fetchTeamInfo($team_id) {
 	}
 	global $connect;
 	$result = mysqli_query($connect, $sql);
+	$output = [];
 	while($team = mysqli_fetch_array($result)){
 		$team_id = $team['team_id'];
 		$sql2 = "SELECT * FROM team_player WHERE team_id = '$team_id'";
@@ -110,6 +111,7 @@ function fetchSchedule($team_id) {
 function fetchPlayerStats($team_id){
 	global $connect;
 	$players = fetchPlayers($team_id);
+	$output = [];
 	foreach($players as $player){
 		$player_id = $player['player_id'];
 		$sql = "SELECT AVG(points) AS ppg, AVG(assists) AS apg, AVG(rebounds) AS rpg, AVG(blocks) AS bpg, AVG(turn_overs) AS topg, player_id FROM player_stats WHERE player_id = '$player_id'";
@@ -127,6 +129,7 @@ function fetchPlayers($team_id){
 	$sql = "SELECT player_id, player_number FROM team_player WHERE team_id = '$team_id'";
 	global $connect;
 	$result = mysqli_query($connect, $sql);
+	$output = [];
 	while($row = mysqli_fetch_array($result)){
 		$player_id = $row['player_id'];
 		$sql2 = "SELECT first_name, last_name FROM players WHERE player_id = '$player_id'";
@@ -146,7 +149,6 @@ function loginRequest($email, $password){
 		$row = mysqli_fetch_array($result);
 		$passwordVerify = password_verify($password, $row['password']);
 		if($passwordVerify){
-			session_start();
 			$_SESSION['admin_id'] = $row['admin_id'];
 			$_SESSION['admin_name'] = $row['admin_name'];
 			$_SESSION['admin_email'] = $email;
@@ -161,6 +163,9 @@ function loginRequest($email, $password){
 
 function adminCreateTeam($team_name){
 	global $connect;
+	if(!uniqueTeamName($team_name)){
+		return "The team name you chose has been taken";
+	}
 	$sql = "INSERT INTO teams(team_name) VALUES('$team_name')";
 	if(mysqli_query($connect, $sql)){
 		return "success";
@@ -169,6 +174,9 @@ function adminCreateTeam($team_name){
 
 function adminUpdateTeam($team_id, $team_name) {
 	global $connect;
+	if(!uniqueTeamName($team_name)){
+		return "The team name you chose has been taken";
+	}
 	$sql = "UPDATE teams SET team_name = '$team_name' WHERE team_id = '$team_id'";
 	if(mysqli_query($connect, $sql)){
 		return "success";
@@ -261,10 +269,38 @@ function adminDeleteSchedule($game_id){
 
 function adminCreatePlayer($player_first_name, $player_last_name, $email, $address, $phone_number, $team_id, $player_number) {
 	global $connect;
+	if(!isset($_SESSION['record_id'])){
+		if(!uniquePlayerNumber($team_id, $player_number)){
+			return "The player number you chose has been taken";
+		}
+	}
 	$sql = "INSERT INTO players(first_name, last_name, email, address, phone_number) VALUES('$player_first_name', '$player_last_name', '$email', '$address', '$phone_number')";
 	if(mysqli_query($connect, $sql)){
 		$player_id = mysqli_insert_id($connect);
 		return createTeamPlayerConnection(mysqli_insert_id($connect), $player_number, $team_id);
+	}
+}
+
+function uniquePlayerNumber($team_id, $player_number){
+	global $connect;
+	$sql = "SELECT player_number FROM team_player WHERE team_id = '$team_id' AND player_number = '$player_number' UNION ALL SELECT player_number FROM unpaid_memberships WHERE team_id = '$team_id' AND player_number = '$player_number'";
+	$count = mysqli_num_rows(mysqli_query($connect, $sql));
+	if($count > 0){
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function uniqueTeamName($team_name){
+	global $connect;
+	$sql = "SELECT team_name FROM teams WHERE team_name = '$team_name' UNION ALL SELECT team_name FROM unpaid_memberships WHERE team_name = '$team_name'";
+	$result = mysqli_query($connect, $sql);
+	$count = mysqli_num_rows($result);
+	if($count > 0){
+		return false;
+	} else {
+		return true;
 	}
 }
 
@@ -280,6 +316,7 @@ function adminReadPlayers(){
 	global $connect;
 	$sql = "SELECT * FROM players";
 	$result = mysqli_query($connect, $sql);
+	$output = [];
 	while($row = mysqli_fetch_array($result)){
 		$row['team_id'] = fetchPlayerTeam($row['player_id'])['team_id'];
 		$row['player_number'] = fetchPlayerTeam($row['player_id'])['player_number'];
@@ -334,4 +371,76 @@ function adminCreateStat($game_id, $player_id, $points, $assists, $rebounds, $bl
 		return "success";
 	}
 }
+
+function createUnpaidOrder($action, $first_name, $last_name, $address, $phone_number, $team_id, $team_name, $email, $player_number){
+	global $connect, $timestamp;
+	if($action === "createTeam"){
+		if(!uniqueTeamName($team_name)){
+			return "The team name you chose has been taken";
+		}
+		$sql = "INSERT INTO unpaid_memberships(first_name, last_name, address, email, phone_number, team_name, order_type, timestamp, player_number) VALUES('$first_name', '$last_name', '$address', '$email', '$phone_number', '$team_name', '$action', '$timestamp', '$player_number')";
+		if(mysqli_query($connect, $sql)){
+			$_SESSION['action'] = $action;
+			$_SESSION['record_id'] = mysqli_insert_id($connect);
+			echo "success";
+		}
+	} else {
+		if(!uniquePlayerNumber($team_id, $player_number)){
+			return "The player number you chose has been taken";
+		}
+		$sql = "INSERT INTO unpaid_memberships(first_name, last_name, address, email, phone_number, team_id, order_type, player_number) VALUES('$first_name', '$last_name', '$address', '$email', '$phone_number', '$team_id', '$action', '$player_number')";
+		if(mysqli_query($connect, $sql)){
+			$_SESSION['action'] = $action;
+			$_SESSION['record_id'] = mysqli_insert_id($connect);
+			echo "success";
+		}
+	}
+}
+
+function adminReadUnpaid() {
+	global $connect;
+	$sql = "SELECT * FROM unpaid_memberships";
+	$result = mysqli_query($connect, $sql);
+	$output = [];
+	while($row =  mysqli_fetch_array($result)){
+		if($row['order_type'] === "joinTeam"){
+			$row['team_name'] = fetchPlayerTeamName($row['team_id'])['team_name'];
+		}
+		$output[] = $row;
+	}
+	return $output;
+}
+
+function adminDeleteUnpaid($record_id){
+	global $connect;
+	$sql = "DELETE FROM unpaid_memberships WHERE record_id = '$record_id' AND paid = 'false'";
+	if(mysqli_query($connect, $sql)){
+		return "success";
+	}
+}
+
+function createTeamFromUnpaid($team_name){
+	global $connect;
+	$sql = "INSERT INTO teams(team_name) VALUES('$team_name')";
+	if(mysqli_query($connect, $sql)){
+		return mysqli_insert_id($connect);
+	}
+}
+
+function adminPaidUnpaid($record_id){
+  global $connect;
+  $sql = "UPDATE unpaid_memberships SET paid = 'true' WHERE record_id = '$record_id'";
+  if(mysqli_query($connect, $sql)){
+    return "success";
+  }
+}
+
+function getRecord(){
+  global $connect;
+  $record_id = $_SESSION['record_id'];
+  $sql = "SELECT * FROM unpaid_memberships WHERE record_id = '$record_id'";
+  $result = mysqli_query($connect, $sql);
+  return mysqli_fetch_array($result);
+}
+
 ?>

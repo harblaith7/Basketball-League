@@ -27,46 +27,40 @@ app.controller('leagueController', function($scope, $http) {
         document.getElementById("contactName").value = null;
         document.getElementById("contactEmail").value = null;
         document.getElementById("contactMessage").value = null;
-        return;
       } else {
         alert(data);
-        return;
       }
     });
   }
-  $scope.packageSelect = function(package) {
-    document.getElementById("package").value = package;
-  }
   $scope.teamRegistration = function() {
-    var package = document.getElementById("package").value;
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var address = document.getElementById("address").value;
     var email = document.getElementById("email").value;
     var phoneNumber = document.getElementById("phoneNumber").value;
     var teamName = document.getElementById("teamName").value;
-    if (package !== "single player" & package !== "group" & package !== "business") {
-      errorReporting("error");
-      return;
-    }
-
+    var playerNumber = document.getElementById("playerNumber").value;
     function errorReporting(error) {
       $("#registerError").removeClass("hidden");
       document.getElementById("registerError").innerHTML = error;
     }
-    if (firstName == "") {
+    if (firstName.length === 0) {
       errorReporting("First name cannot be empty");
       return;
     }
-    if (lastName == "") {
+    if (lastName.length === 0) {
       errorReporting("Last name cannot be empty");
       return;
     }
-    if (address == "") {
+    if (address.length === 0) {
       errorReporting("Address cannot be empty");
       return;
     }
-    if (email == "") {
+    if (email.length === 0) {
+      errorReporting("Email cannot be empty");
+      return;
+    }
+    if (playerNumber.length === 0) {
       errorReporting("Email cannot be empty");
       return;
     }
@@ -82,20 +76,82 @@ app.controller('leagueController', function($scope, $http) {
       return;
     }
     $http.post($scope.apiRoot + "createTeam", {
-      package: package,
       first_name: firstName,
       last_name: lastName,
       address: address,
       email: email,
-      phone_numer: phoneNumber,
-      team_name: teamName
+      phone_number: phoneNumber,
+      team_name: teamName,
+      team_id: null,
+      player_number: playerNumber
     }).success(function(data) {
-      if (data == "success") {
+      if (data === "success") {
         $("#registerError").addClass("hidden");
-        return;
+        $("#createTeamPaypal").click();
       } else {
         errorReporting(data);
-        return;
+      }
+    });
+  }
+
+  $scope.joinTeam = function() {
+    var firstName = document.getElementById("firstNameJoinTeam").value;
+    var lastName = document.getElementById("lastNameJoinTeam").value;
+    var address = document.getElementById("addressJoinTeam").value;
+    var email = document.getElementById("emailJoinTeam").value;
+    var phoneNumber = document.getElementById("phoneNumberJoinTeam").value;
+    var teamId = document.getElementById("teamJoinTeam").value;
+    var playerNumber = document.getElementById("playerNumberJoinTeam").value;
+    function errorReporting(error) {
+      $("#joinTeamError").removeClass("hidden");
+      document.getElementById("joinTeamError").innerHTML = error;
+    }
+    if (firstName.length === 0) {
+      errorReporting("First name cannot be empty");
+      return;
+    }
+    if (lastName.length === 0) {
+      errorReporting("Last name cannot be empty");
+      return;
+    }
+    if (address.length === 0) {
+      errorReporting("Address cannot be empty");
+      return;
+    }
+    if (email.length === 0) {
+      errorReporting("Email cannot be empty");
+      return;
+    }
+    if (playerNumber.length === 0) {
+      errorReporting("Email cannot be empty");
+      return;
+    }
+    if (phoneNumber.length < 10 || phoneNumber.length > 12) {
+      errorReporting("Please provide your 10 digit phone number");
+      return;
+    }
+    if (teamId.length === 0) {
+      errorReporting("Team name cannot be empty");
+      return;
+    } else if (teamName.length > 20) {
+      errorReporting("Team name cannot be longer than 20 characters");
+      return;
+    }
+    $http.post($scope.apiRoot + "joinTeam", {
+      first_name: firstName,
+      last_name: lastName,
+      address: address,
+      email: email,
+      phone_number: phoneNumber,
+      team_id: teamId,
+      team_name: null,
+      player_number: playerNumber
+    }).success(function(data) {
+      if (data === "success") {
+        $("#joinTeamError").addClass("hidden");
+        $("#joinTeamPaypal").click();
+      } else {
+        errorReporting(data);
       }
     });
   }
@@ -138,8 +194,11 @@ app.controller('leagueController', function($scope, $http) {
       email: loginEmail,
       password: loginPassword
     }).success(function(data) {
-      window.open("dashboard.php", "_self");
-      document.getElementById("loginResponse").innerHTML = data;
+      if(data.includes("success")){
+        window.open("dashboard.php", "_self");
+      } else {
+        document.getElementById("loginResponse").innerHTML = data;
+      }
     });
   }
 
@@ -158,6 +217,8 @@ app.controller('leagueController', function($scope, $http) {
         $scope.getTeams();
         $scope.adminTeamBtn = "Create Team";
         document.getElementById("teamCreate").reset();
+      } else {
+        alert(data);
       }
     })
   }
@@ -177,6 +238,8 @@ app.controller('leagueController', function($scope, $http) {
     }).success(function(data){
       if(data === "success") {
         $scope.getTeams();
+      } else {
+        alert(data);
       }
     })
   }
@@ -213,6 +276,8 @@ app.controller('leagueController', function($scope, $http) {
         $scope.getSchedule();
         $scope.adminScheduleBtn = "Add";
         document.getElementById("scheduleForm").reset();
+      } else {
+        alert(data);
       }
     })
   }
@@ -248,6 +313,8 @@ app.controller('leagueController', function($scope, $http) {
     }).success(function(data){
       if(data === "success") {
         $scope.getSchedule();
+      } else {
+        alert(data);
       }
     })
   }
@@ -277,6 +344,8 @@ app.controller('leagueController', function($scope, $http) {
         $scope.adminGetPlayers();
         $scope.adminPlayerBtn = "Add";
         document.getElementById("playerCreate").reset();
+      } else {
+        alert(data);
       }
     })
   }
@@ -299,6 +368,8 @@ app.controller('leagueController', function($scope, $http) {
     }).success(function(data){
       if(data === "success") {
         $scope.adminGetPlayers();
+      } else {
+        alert(data);
       }
     })
   }
@@ -342,6 +413,38 @@ app.controller('leagueController', function($scope, $http) {
     }).success(function(data){
       if(data === "success"){
         document.getElementById("createStat").reset();
+      } else {
+        alert(data);
+      }
+    })
+  }
+
+  $scope.getUnpaid = function(){
+    $http.get($scope.apiRoot + "adminReadUnpaid").success(function(data){
+      $scope.unpaid = data;
+    })
+  }
+
+  $scope.adminDeleteUnpaid = function(record_id){
+    $http.post($scope.apiRoot + "adminDeleteUnpaid", {
+      record_id: record_id
+    }).success(function(data){
+      if(data === "success") {
+        $scope.getUnpaid();
+      } else {
+        alert(data);
+      }
+    })
+  }
+
+  $scope.adminDeleteUnpaid = function(record_id){
+    $http.post($scope.apiRoot + "adminPaidUnpaid", {
+      record_id: record_id
+    }).success(function(data){
+      if(data === "success") {
+        $scope.getUnpaid();
+      } else {
+        alert(data);
       }
     })
   }

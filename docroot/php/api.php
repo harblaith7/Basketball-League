@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "functions.php";
 $route = $_GET['route'];
 $data = json_decode(file_get_contents("php://input"));
@@ -37,26 +38,57 @@ if($route === "loginRequest"){
 }
 
 if($route === "logout"){
-	session_start();
 	session_destroy();
 	$home_url = '../login.php';
 	header('Location: ' . $home_url);
 }
 
 if($route === "createTeam"){
+	$action = "createTeam";
+	$first_name = mysqli_real_escape_string($connect, $data->first_name);
+	$last_name = mysqli_real_escape_string($connect, $data->last_name);
+	$address = mysqli_real_escape_string($connect, $data->address);
+	$phone_number = mysqli_real_escape_string($connect, $data->phone_number);
+	$team_id = mysqli_real_escape_string($connect, $data->team_id);
 	$team_name = mysqli_real_escape_string($connect, $data->team_name);
 	$email = mysqli_real_escape_string($connect, $data->email);
+	$player_number = mysqli_real_escape_string($connect, $data->player_number);
+
 	if (team_leader_check($email) && team_name_check($team_name)){
-		echo "success";
+		echo createUnpaidOrder($action, $first_name, $last_name, $address, $phone_number, $team_id, $team_name, $email, $player_number);
 	} else {
 		echo team_leader_check($email);
 		echo team_name_check($team_name);
 	}
 }
 
-session_start();
-if(isset($_SESSION['admin_id'])){
+if($route === "joinTeam"){
+	$action = "joinTeam";
+	$first_name = mysqli_real_escape_string($connect, $data->first_name);
+	$last_name = mysqli_real_escape_string($connect, $data->last_name);
+	$address = mysqli_real_escape_string($connect, $data->address);
+	$phone_number = mysqli_real_escape_string($connect, $data->phone_number);
+	$team_id = mysqli_real_escape_string($connect, $data->team_id);
+	$team_name = mysqli_real_escape_string($connect, $data->team_name);
+	$email = mysqli_real_escape_string($connect, $data->email);
+	$player_number = mysqli_real_escape_string($connect, $data->player_number);
 
+	if (team_leader_check($email) && team_name_check($team_name)){
+		echo createUnpaidOrder($action, $first_name, $last_name, $address, $phone_number, $team_id, $team_name, $email, $player_number);
+	} else {
+		echo team_leader_check($email);
+		echo team_name_check($team_name);
+	}
+}
+
+function isAdmin(){
+	if(isset($_SESSION['admin_id'])){
+		return true;
+	}
+	return false;
+}
+
+if(isAdmin()){
 	if($route === "adminCreateEditTeam"){
 		$team_name = mysqli_real_escape_string($connect, $data->team_name);
 		if($data->form_button === "Edit") {
@@ -107,8 +139,8 @@ if(isset($_SESSION['admin_id'])){
 		$phone_number = mysqli_real_escape_string($connect, $data->phone_number);
 		$team_id = mysqli_real_escape_string($connect, $data->team_id);
 		$player_number = mysqli_real_escape_string($connect, $data->player_number);
-		$player_id = mysqli_real_escape_string($connect, $data->player_id);
 		if($action === "Edit"){
+			$player_id = mysqli_real_escape_string($connect, $data->player_id);
 			echo adminUpdatePlayer($player_id, $player_first_name, $player_last_name, $email, $address, $phone_number, $team_id, $player_number);
 		} else {
 			echo adminCreatePlayer($player_first_name, $player_last_name, $email, $address, $phone_number, $team_id, $player_number);
@@ -129,5 +161,19 @@ if(isset($_SESSION['admin_id'])){
 		$blocks = mysqli_real_escape_string($connect, $data->blocks);
 		$turnovers = mysqli_real_escape_string($connect, $data->turnovers);
 		echo adminCreateStat($game_id, $player_id, $points, $assists, $rebounds, $blocks, $turnovers);
+	}
+
+	if($route === "adminReadUnpaid"){
+		echo json_encode(adminReadUnpaid());
+	}
+
+	if($route === "adminDeleteUnpaid"){
+		$record_id = mysqli_real_escape_string($connect, $data->record_id);
+		echo adminDeleteUnpaid($record_id);
+	}
+
+	if($route === "adminPaidUnpaid"){
+		$record_id = mysqli_real_escape_string($connect, $data->record_id);
+		echo adminPaidUnpaid($record_id);
 	}
 }

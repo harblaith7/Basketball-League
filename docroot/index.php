@@ -55,38 +55,20 @@
 					</div>
 					<!-- Pricing Table starts -->
 					<div class="row">
-						<div class="col-md-4">
-							<div class="price-card " ng-click="packageSelect('single player')" data-toggle="modal" data-target="#signUpForm">
-								<h2>Single Player</h2>
-								<p>The standard version</p>
-								<p class="price"><span>119.95</span>/ Player</p>
-								<ul class="pricing-offers">
-									<li>1 to 5 Players</li>
-									<li>+$119.95 per extra player</li>
-								</ul>
+						<div class="col-md-6">
+							<div class="price-card " data-toggle="modal" data-target="#joinTeam">
+								<h2>Join a Team</h2>
+								<p>1 Player</p>
+								<p class="price"><span>119.99</span></p>
 								<a href="" class="btn btn-inverse btn-mid">Buy Now</a>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="price-card featured" ng-click="packageSelect('group')" data-toggle="modal" data-target="#signUpForm">
-								<h2>Group</h2>
-								<p>Most popular choice</p>
-								<p class="price"><span>109.96</span>/ Player </p>
+						<div class="col-md-6">
+							<div class="price-card featured" data-toggle="modal" data-target="#createTeam">
+								<h2>Create a Team</h2>
+								<p>Team Leader + Team Registration</p>
+								<p class="price"><span>119.99</span></p>
 								<ul class="pricing-offers">
-									<li>5 to 7 Players</li>
-									<li>+$119.95 per extra player</li>
-								</ul>
-								<a href="" class="btn btn-inverse btn-mid">Buy Now</a>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="price-card " ng-click="packageSelect('business')" data-toggle="modal" data-target="#signUpForm">
-								<h2>Business</h2>
-								<p>For the whole team</p>
-								<p class="price"><span>104.95</span>/ Player</p>
-								<ul class="pricing-offers">
-									<li>+7 Players</li>
-									<li>+$119.95 per extra player</li>
 								</ul>
 								<a href="" class="btn btn-inverse btn-mid">Buy Now</a>
 							</div>
@@ -94,7 +76,7 @@
 					</div>
 				</div>
 				<!-- Modal -->
-				<div class="modal fade " id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+				<div class="modal fade " id="createTeam" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-body">
@@ -112,15 +94,7 @@
 										</div>
 									</div>
 									<form>
-										<div id="registerError" class="hidden">
-
-										</div>
-										<div class="form-group row">
-											<label for="example-text-input" class="col-md-2 col-form-label">Package</label>
-											<div class="col-md-10">
-												<input class="form-control" type="text" id="package" disabled style="text-transform: capitalize;">
-											</div>
-										</div>
+										<div id="registerError" class="hidden error-messsage"></div>
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">First Name</label>
 											<div class="col-md-10">
@@ -154,18 +128,113 @@
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">Team Name</label>
 											<div class="col-md-10">
-												<input class="form-control" type="text" placeholder="TeamName" id="teamName">
+												<input class="form-control" type="text" placeholder="Team Name" id="teamName">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Player Number</label>
+											<div class="col-md-10">
+												<input class="form-control" type="number" placeholder="Player Team Number" id="playerNumber">
+											</div>
+										</div>
+										<div class="row">
+											<center>
+												<button class="btn btn-primary btn-default card-btn" ng-click="teamRegistration()" type="submit">
+													Proceed to Payment
+												</button>
+											</center>
+										</div>
+									</form>
+									<form class="hidden" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick">
+										<input type="hidden" name="hosted_button_id" value="6X7TUHM8Q9G3U">
+										<input id="createTeamPaypal" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+										<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modal -->
+				<div class="modal fade " id="joinTeam" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-body">
+								<button type="button" class="close push-xs-right" data-dismiss="modal" aria-label="Close">
+									<i class="fa fa-close"></i>
+								</button>
+								<div class="container-fluid modal-item">
+									<div class="row justify-content-md-center">
+										<div class="col-xl-5 col-lg-6 col-md-8">
+											<div class="section-title text-center title-ex1">
+												<h2>Join a Team</h2>
+												<br>
+											</div>
+										</div>
+									</div>
+									<form>
+										<div id="joinTeamError" class="hidden error-messsage"></div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">First Name</label>
+											<div class="col-md-10">
+												<input class="form-control" type="text" placeholder="Player First Name" id="firstNameJoinTeam">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Last Name</label>
+											<div class="col-md-10">
+												<input class="form-control" type="text" placeholder="Player Last Name" id="lastNameJoinTeam">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Address</label>
+											<div class="col-md-10">
+												<input class="form-control" type="text" placeholder="Player Address" id="addressJoinTeam">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Email</label>
+											<div class="col-md-10">
+												<input class="form-control" type="email" placeholder="Player Email Address" id="emailJoinTeam">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-search-input" class="col-md-2 col-form-label">Phone Number</label>
+											<div class="col-md-10">
+												<input class="form-control" type="text" id="phoneNumberJoinTeam" placeholder="###-###-####">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Team Name</label>
+											<div ng-init="getTeams()" class="col-md-10">
+												<select ng-model="teamIDselect" id="teamJoinTeam" class="form-control">
+														<option ng-repeat="x in teams" value="{{x.team_id}}">{{x.team_name}}</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="example-text-input" class="col-md-2 col-form-label">Player Number</label>
+											<div class="col-md-10">
+												<input class="form-control" type="number" placeholder="Player Team Number" id="playerNumberJoinTeam">
 											</div>
 										</div>
 										<div class="row">
 											<center>
 												<div class="col-md-10 offset-md-1">
-													<button class="btn btn-primary btn-default card-btn" ng-click="teamRegistration()" type="submit">
+													<button class="btn btn-primary btn-default card-btn" ng-click="joinTeam()" type="submit">
 														Proceed to Payment
 													</button>
 												</div>
 											</center>
 										</div>
+									</form>
+									<form class="hidden" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick">
+										<input type="hidden" name="hosted_button_id" value="HS3RTHTWP49F2">
+										<input id="joinTeamPaypal" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+										<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 									</form>
 								</div>
 							</div>

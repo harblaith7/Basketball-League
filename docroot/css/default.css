@@ -49,11 +49,11 @@ ul.nav-tabs .nav-item .nav-link.active {
 }
 
 .hover-overlay.effect-scale:before, .media.blog-media > a:before {
-  background-color: rgba(12, 198, 82, 0.7) !important;
+  background-color: rgba(5, 86, 155, 0.7) !important;
 }
 
 .backToTop:before {
-  border-color: rgba(12, 198, 82, 0.3) !important;
+  border-color: rgba(5, 86, 155, 0.3) !important;
 }
 
 .tp-caption.rev-btn, .tp-caption.tp-svg-layer {

@@ -22,6 +22,7 @@ if(!isset($_SESSION['admin_id'])){
 									<button class="tablinks" onclick="openCity(event, 'Teams')">Teams</button>
 									<button class="tablinks" onclick="openCity(event, 'Schedule')">Schedule</button>
 									<button class="tablinks" onclick="openCity(event, 'Players')">Players</button>
+									<button class="tablinks" onclick="openCity(event, 'Unpaid')">Unpaid</button>
 									<a href="php/api.php?route=logout">
 										<button style="background: red; color: white;" class="tablinks">Logout</button>
 									</a>
@@ -246,6 +247,55 @@ if(!isset($_SESSION['admin_id'])){
                     </div>
                 </section>
             </div>
+						<div id="Unpaid" class="tabcontent">
+								<section ng-init="getUnpaid()" class=" bg-sand">
+										<div class="container">
+												<div class="row">
+														<div class="col-md-12">
+																<div class="member_desc">
+																		<input type="text" placeholder="Search" ng-model="searchUnpaid" class="form-control" style="width: 200px;">
+																		<table class="table">
+																				<thead>
+																						<th>Record ID</th>
+																						<th>First Name</th>
+																						<th>Last Name</th>
+																						<th>Address</th>
+																						<th>Email</th>
+																						<th>Phone Number</th>
+																						<th>Team Name</th>
+																						<th>Player Number</th>
+																						<th>Order type</th>
+																						<th>Paid</th>
+																						<th></th>
+																						<th></th>
+																				</thead>
+																				<tbody>
+																						<tr ng-repeat="x in unpaid | filter: searchUnpaid">
+																								<td>{{x.record_id}}</td>
+																								<td>{{x.first_name}}</td>
+																								<td>{{x.last_name}}</td>
+																								<td>{{x.address}}</td>
+																								<td>{{x.email}}</td>
+																								<td>{{x.phone_number}}</td>
+																								<td>{{x.team_name}}</td>
+																								<td>{{x.player_number}}</td>
+																								<td>{{x.order_type}}</td>
+																								<td>{{x.paid}}</td>
+																								<td>
+																										<button ng-click="adminPaidUnpaid(x.record_id)">paid</button>
+																								</td>
+																								<td>
+																										<button ng-click="adminDeleteUnpaid(x.record_id)">delete</button>
+																								</td>
+																						</tr>
+																				</tbody>
+																		</table>
+																</div>
+														</div>
+												</div>
+										</div>
+								</section>
+						</div>
         </div>
 
         <!-- JAVASCRIPTS -->
