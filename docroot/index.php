@@ -134,7 +134,7 @@
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">Player Number</label>
 											<div class="col-md-10">
-												<input class="form-control" type="number" placeholder="Player Team Number" id="playerNumber">
+												<input class="form-control" type="number" min="1" placeholder="Player Team Number" id="playerNumber">
 											</div>
 										</div>
 										<div class="row">
@@ -217,7 +217,7 @@
 										<div class="form-group row">
 											<label for="example-text-input" class="col-md-2 col-form-label">Player Number</label>
 											<div class="col-md-10">
-												<input class="form-control" type="number" placeholder="Player Team Number" id="playerNumberJoinTeam">
+												<input class="form-control" type="number" min="1" placeholder="Player Team Number" id="playerNumberJoinTeam">
 											</div>
 										</div>
 										<div class="row">

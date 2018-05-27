@@ -36,8 +36,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-4">
-							<div class="img-container"> 
-								<img  ng-repeat="x in teams" src="{{x.team_image}}" style="width:200px;  height:200px" alt="team member" class="img-full"> 
+							<div class="img-container">
+								<img  ng-repeat="x in teams" src="{{x.team_image}}" style="width:200px;  height:200px" alt="team member" class="img-full">
 							</div>
 						</div>
 						<div class="col-md-8" style="color: black">
@@ -77,11 +77,11 @@
 										<tr ng-repeat="x in stats">
 											<td>{{x.player_name}}</td>
 											<td>{{x.player_number}}</td>
-											<td>{{x.ppg}}</td>
-											<td>{{x.apg}}</td>
-											<td>{{x.rpg}}</td>
-											<td>{{x.bpg}}</td>
-											<td>{{x.topg}}</td>
+											<td>{{x.ppg | number: 1}}</td>
+											<td>{{x.apg | number: 1}}</td>
+											<td>{{x.rpg | number: 1}}</td>
+											<td>{{x.bpg | number: 1}}</td>
+											<td>{{x.topg | number: 1}}</td>
 										</tr>
 									</tbody>
 								</table>

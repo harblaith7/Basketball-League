@@ -437,7 +437,7 @@ app.controller('leagueController', function($scope, $http) {
     })
   }
 
-  $scope.adminDeleteUnpaid = function(record_id){
+  $scope.adminPaidUnpaid = function(record_id){
     $http.post($scope.apiRoot + "adminPaidUnpaid", {
       record_id: record_id
     }).success(function(data){

@@ -174,6 +174,6 @@ if(isAdmin()){
 
 	if($route === "adminPaidUnpaid"){
 		$record_id = mysqli_real_escape_string($connect, $data->record_id);
-		echo adminPaidUnpaid($record_id);
+		echo processUnpaid($record_id);
 	}
 }

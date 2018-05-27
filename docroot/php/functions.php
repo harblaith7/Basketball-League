@@ -95,12 +95,16 @@ function fetchSchedule($team_id) {
 				$row['winner_name'] = 'TBD';
 			}
 
-			if($team_id !== null){
+			if($team_id !== null || $row['played'] !== "N"){
 				if($team_id === $winner){
 					$row['result'] = 'W';
 				} else {
 					$row['result'] = 'L';
 				}
+			}
+
+			if($row['played'] === "N"){
+				$row['result'] = 'TBD';
 			}
 			$output[] = $row;
 		}
@@ -380,7 +384,6 @@ function createUnpaidOrder($action, $first_name, $last_name, $address, $phone_nu
 		}
 		$sql = "INSERT INTO unpaid_memberships(first_name, last_name, address, email, phone_number, team_name, order_type, timestamp, player_number) VALUES('$first_name', '$last_name', '$address', '$email', '$phone_number', '$team_name', '$action', '$timestamp', '$player_number')";
 		if(mysqli_query($connect, $sql)){
-			$_SESSION['action'] = $action;
 			$_SESSION['record_id'] = mysqli_insert_id($connect);
 			echo "success";
 		}
@@ -390,7 +393,6 @@ function createUnpaidOrder($action, $first_name, $last_name, $address, $phone_nu
 		}
 		$sql = "INSERT INTO unpaid_memberships(first_name, last_name, address, email, phone_number, team_id, order_type, player_number) VALUES('$first_name', '$last_name', '$address', '$email', '$phone_number', '$team_id', '$action', '$player_number')";
 		if(mysqli_query($connect, $sql)){
-			$_SESSION['action'] = $action;
 			$_SESSION['record_id'] = mysqli_insert_id($connect);
 			echo "success";
 		}
@@ -435,12 +437,44 @@ function adminPaidUnpaid($record_id){
   }
 }
 
-function getRecord(){
+function getRecord($record_id){
   global $connect;
-  $record_id = $_SESSION['record_id'];
   $sql = "SELECT * FROM unpaid_memberships WHERE record_id = '$record_id'";
   $result = mysqli_query($connect, $sql);
   return mysqli_fetch_array($result);
+}
+
+function processUnpaid($record_id){
+	$record = getRecord($record_id);
+	$first_name = $record['first_name'];
+	$last_name = $record['last_name'];
+	$address = $record['address'];
+	$phone_number = $record['phone_number'];
+	$team_name = $record['team_name'];
+	$email = $record['email'];
+	$player_number = $record['player_number'];
+
+	if($record['order_type'] === "createTeam"){
+	  $team_id = createTeamFromUnpaid($team_name);
+	  if(adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
+	    if(adminPaidUnpaid($record['record_id']) === "success"){
+				isset($_SESSION['record_id'] || !isset($_SESSION['admin_id'])){
+					unset($_SESSION['record_id']);
+		      header('Location: ../teams.php');
+				}
+	    }
+	  }
+	} else {
+	  $team_id = $record['team_id'];
+	  if(adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
+	    if(adminPaidUnpaid($record['record_id']) === "success"){
+				isset($_SESSION['record_id'] || !isset($_SESSION['admin_id'])){
+					unset($_SESSION['record_id']);
+		      header('Location: ../teams.php');
+				}
+	    }
+	  }
+	}
 }
 
 ?>

@@ -19,10 +19,10 @@ if(!isset($_SESSION['admin_id'])){
         <div class="main-wrapper">
             <div class="container">
 							<div class="tab">
-									<button class="tablinks" onclick="openCity(event, 'Teams')">Teams</button>
-									<button class="tablinks" onclick="openCity(event, 'Schedule')">Schedule</button>
-									<button class="tablinks" onclick="openCity(event, 'Players')">Players</button>
-									<button class="tablinks" onclick="openCity(event, 'Unpaid')">Unpaid</button>
+									<button class="tablinks" ng-click="getTeams()" onclick="openCity(event, 'Teams')">Teams</button>
+									<button class="tablinks" ng-click="getSchedule()" onclick="openCity(event, 'Schedule')">Schedule</button>
+									<button class="tablinks" ng-click="adminGetPlayers()" onclick="openCity(event, 'Players')">Players</button>
+									<button class="tablinks" ng-click="getUnpaid()" onclick="openCity(event, 'Paypal')">Paypal</button>
 									<a href="php/api.php?route=logout">
 										<button style="background: red; color: white;" class="tablinks">Logout</button>
 									</a>
@@ -89,9 +89,9 @@ if(!isset($_SESSION['admin_id'])){
                                         <option ng-repeat="x in teams" value="{{x.team_id}}">{{x.team_name}}</option>
                                     </select>
                                     <label>Team 1 Result</label>
-                                    <input id="team1Result" type="number" class="form-control">
+                                    <input id="team1Result" type="number" min="0" class="form-control">
                                     <label>Team 2 Result</label>
-                                    <input id="team2Result" type="number" class="form-control">
+                                    <input id="team2Result" type="number" min="0" class="form-control">
                                     <label>Game Date</label>
                                     <input id="scheduleDate" type="date" class="form-control">
                                     <label>Game Time</label>
@@ -159,15 +159,15 @@ if(!isset($_SESSION['admin_id'])){
 																	<option ng-repeat="x in playersStatsForm" value="{{x.player_id}}">{{x.first_name}} {{x.last_name}} [{{x.team_name}}]</option>
 															</select>
 															<label>Points</label>
-															<input type="number" class="form-control" id="statsPoints">
+															<input type="number" min="0" class="form-control" id="statsPoints">
 															<label>Assists</label>
-															<input type="number" class="form-control" id="statsAssists">
+															<input type="number" min="0" class="form-control" id="statsAssists">
 															<label>Rebounds</label>
-															<input type="number" class="form-control" id="statsRebounds">
+															<input type="number" min="0" class="form-control" id="statsRebounds">
 															<label>Blocks</label>
-															<input type="number" class="form-control" id="statsBlocks">
+															<input type="number" min="0" class="form-control" id="statsBlocks">
 															<label>Turnovers</label>
-															<input type="number" class="form-control" id="statsTurnovers">
+															<input type="number" min="0" class="form-control" id="statsTurnovers">
 															<input class="form-control" type="submit" ng-click="adminAddStats()">
 														</form>
 													</div>
@@ -204,7 +204,7 @@ if(!isset($_SESSION['admin_id'])){
                                         <option ng-repeat="x in teams" value="{{x.team_id}}">{{x.team_name}}</option>
                                     </select>
                                     <label>Player #</label>
-                                    <input type="number" class="form-control" id="playerNumber">
+                                    <input type="number" min="0" class="form-control" id="playerNumber">
                                     <input class="btn btn-lg btn-primary btn-block" type="submit" ng-click="adminCreateEditPlayer()" value="{{adminPlayerBtn}}">
                                 </form>
                             </div>
@@ -247,7 +247,7 @@ if(!isset($_SESSION['admin_id'])){
                     </div>
                 </section>
             </div>
-						<div id="Unpaid" class="tabcontent">
+						<div id="Paypal" class="tabcontent">
 								<section ng-init="getUnpaid()" class=" bg-sand">
 										<div class="container">
 												<div class="row">
