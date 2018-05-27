@@ -27,6 +27,7 @@ app.controller('leagueController', function($scope, $http) {
         document.getElementById("contactName").value = null;
         document.getElementById("contactEmail").value = null;
         document.getElementById("contactMessage").value = null;
+        alert("Email Sent!");
       } else {
         alert(data);
       }

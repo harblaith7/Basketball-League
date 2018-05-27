@@ -461,6 +461,8 @@ function processUnpaid($record_id){
 				if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
 					unset($_SESSION['record_id']);
 		      header('Location: ../teams.php');
+				} else {
+					return "success";
 				}
 	    }
 	  }
@@ -472,7 +474,9 @@ function processUnpaid($record_id){
 					unset($_SESSION['record_id']);
 		      header('Location: ../teams.php');
 				}
-	    }
+	    } else {
+				return "success";
+			}
 	  }
 	}
 }
