@@ -458,7 +458,7 @@ function processUnpaid($record_id){
 	  $team_id = createTeamFromUnpaid($team_name);
 	  if(adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
 	    if(adminPaidUnpaid($record['record_id']) === "success"){
-				isset($_SESSION['record_id'] || !isset($_SESSION['admin_id'])){
+				if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
 					unset($_SESSION['record_id']);
 		      header('Location: ../teams.php');
 				}
@@ -468,7 +468,7 @@ function processUnpaid($record_id){
 	  $team_id = $record['team_id'];
 	  if(adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
 	    if(adminPaidUnpaid($record['record_id']) === "success"){
-				isset($_SESSION['record_id'] || !isset($_SESSION['admin_id'])){
+				if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
 					unset($_SESSION['record_id']);
 		      header('Location: ../teams.php');
 				}
