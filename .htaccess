@@ -1,0 +1,8 @@
+RewriteEngine On
+Options -Indexes
+
+RewriteCond %{HTTPS} =off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L,R=301]
+
+RewriteRule ^api/([0-9a-zA-Z_-]*)/([0-9a-zA-Z_-]*)$ php/?auth=$1&route=$2 [NC,L]
+
