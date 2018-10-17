@@ -449,30 +449,27 @@ class Functions
 		$email = $record['email'];
 		$player_number = $record['player_number'];
 
+		if($record['paid'] === "true"){
+			return [
+				'status' => 'error',
+				'message' => 'Already paid'
+			];
+		}
 		if($record['order_type'] === "createTeam"){
 		  $team_id = self::createTeamFromUnpaid($team_name);
-		  if(self::adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
-		    if(self::adminPaidUnpaid($record['record_id']) === "success"){
-					if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
-						unset($_SESSION['record_id']);
-			      header('Location: ../teams.php');
-					} else {
-						return ['status' => 'success'];
-					}
-		    }
-		  }
 		} else {
 		  $team_id = $record['team_id'];
-		  if(self::adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number) === "success"){
-		    if(self::adminPaidUnpaid($record['record_id']) === "success"){
-					if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
-						unset($_SESSION['record_id']);
-			      header('Location: ../teams.php');
-					}
-		    } else {
-					return ['status' => 'success'];
+		}
+		$createPlayer = self::adminCreatePlayer($first_name, $last_name, $email, $address, $phone_number, $team_id, $player_number);
+		if($createPlayer['status'] === "success"){
+			if(self::adminPaidUnpaid($record['record_id'])['status'] === "success"){
+				if(isset($_SESSION['record_id']) || !isset($_SESSION['admin_id'])){
+					unset($_SESSION['record_id']);
 				}
-		  }
+				return ['status' => 'success'];
+			}
+		} else {
+			return $createPlayer;
 		}
 	}
 }

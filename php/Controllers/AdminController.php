@@ -81,11 +81,18 @@ class AdminController
 
   public static function adminDeleteUnpaid(){
     $record_id = $_POST['record_id'];
+    if(Functions::getRecord($record_id)['paid'] === "true"){
+      return [
+        'status' => 'error',
+        'message' => 'Cannot delete paid record'
+      ];
+    }
     return Functions::adminDeleteUnpaid($record_id);
   }
 
   public static function adminPaidUnpaid(){
     $record_id = $_POST['record_id'];
-    return Functions::processUnpaid($record_id);
+    $return = Functions::processUnpaid($record_id);
+    return $return;
   }
 }
