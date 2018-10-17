@@ -1,6 +1,10 @@
 var app = angular.module('leagueApp', ['ngSanitize']);
 app.controller('leagueController', function($scope, $http) {
-  $scope.apiRoot = "php/api.php?route=";
+  if(window.location.hostname === "localhost"){
+    $scope.apiRoot = "http://localhost/anklebreaker/api/";
+  } else {
+    $scope.apiRoot = "http://" + window.location.hostname + "/api/";
+  }
 
   $scope.contactFrom = function() {
     var name = document.getElementById("contactName").value;
@@ -29,7 +33,7 @@ app.controller('leagueController', function($scope, $http) {
         document.getElementById("contactMessage").value = null;
         alert("Email Sent!");
       } else {
-        alert(data);
+        alert(data.message);
       }
     });
   }
@@ -86,11 +90,12 @@ app.controller('leagueController', function($scope, $http) {
       team_id: null,
       player_number: playerNumber
     }).success(function(data) {
-      if (data === "success") {
-        $("#registerError").addClass("hidden");
+      if (data.status === "success") {
+        $("#registerError").addClass("success");
         $("#createTeamPaypal").click();
+        errorReporting(data.status);
       } else {
-        errorReporting(data);
+        errorReporting(data.message);
       }
     });
   }
@@ -124,7 +129,7 @@ app.controller('leagueController', function($scope, $http) {
       return;
     }
     if (playerNumber.length === 0) {
-      errorReporting("Email cannot be empty");
+      errorReporting("Player number cannot be empty");
       return;
     }
     if (phoneNumber.length < 10 || phoneNumber.length > 12) {
@@ -148,18 +153,19 @@ app.controller('leagueController', function($scope, $http) {
       team_name: null,
       player_number: playerNumber
     }).success(function(data) {
-      if (data === "success") {
-        $("#joinTeamError").addClass("hidden");
+      if (data.status === "success") {
+        $("#joinTeamError").addClass("success");
         $("#joinTeamPaypal").click();
+        errorReporting(data.status);
       } else {
-        errorReporting(data);
+        errorReporting(data.message);
       }
     });
   }
 
   $scope.getTeams = function(team_id) {
     $http.post($scope.apiRoot + "readTeams", {
-      type: "request",
+
       team_id: team_id
     }).success(function(data) {
       $scope.teams = data;
@@ -171,8 +177,11 @@ app.controller('leagueController', function($scope, $http) {
   }
 
   $scope.getSchedule = function(team_id) {
+    if(team_id){
+      team_id = null;
+    }
+
     $http.post($scope.apiRoot + "readSchedule", {
-      type: "request",
       team_id: team_id
     }).success(function(data) {
       $scope.schedule = data;
@@ -181,7 +190,6 @@ app.controller('leagueController', function($scope, $http) {
 
   $scope.getStats = function(team_id) {
     $http.post($scope.apiRoot + "readPlayerStats", {
-      type: 'request',
       team_id: team_id
     }).success(function(data) {
       $scope.stats = data;
@@ -198,7 +206,7 @@ app.controller('leagueController', function($scope, $http) {
       if(data.includes("success")){
         window.open("dashboard.php", "_self");
       } else {
-        document.getElementById("loginResponse").innerHTML = data;
+        document.getElementById("loginResponse").innerHTML = data.message;
       }
     });
   }
@@ -214,12 +222,12 @@ app.controller('leagueController', function($scope, $http) {
       team_id: $scope.adminEditTeamId,
       team_name: teamName
     }).success(function(data){
-      if (data === "success") {
+      if (data.status === "success") {
         $scope.getTeams();
         $scope.adminTeamBtn = "Create Team";
         document.getElementById("teamCreate").reset();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -237,10 +245,10 @@ app.controller('leagueController', function($scope, $http) {
     $http.post($scope.apiRoot + "adminDeleteTeam", {
       team_id: team_id
     }).success(function(data){
-      if(data === "success") {
+      if(data.status === "success") {
         $scope.getTeams();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -262,6 +270,9 @@ app.controller('leagueController', function($scope, $http) {
     var scheduleDate = document.getElementById("scheduleDate").value;
     var scheduleTime = document.getElementById("scheduleTime").value;
     var scheduleLocation = document.getElementById("scheduleLocation").value;
+    if(!$scope.game_id){
+      $scope.game_id = null;
+    }
     $http.post($scope.apiRoot + "adminAddEditSchedule", {
       game_id: $scope.game_id,
       action: $scope.adminScheduleBtn,
@@ -273,14 +284,18 @@ app.controller('leagueController', function($scope, $http) {
       scheduleTime: scheduleTime,
       scheduleLocation: scheduleLocation
     }).success(function(data){
-      if(data === "success") {
+      console.log(data);
+      if(data.status === "success") {
         $scope.getSchedule();
         $scope.adminScheduleBtn = "Add";
         document.getElementById("scheduleForm").reset();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
+    $scope.getSchedule();
+    $scope.adminScheduleBtn = "Add";
+    document.getElementById("scheduleForm").reset();
   }
 
   $scope.adminEditSchedule = function(game_id, team1_name, team2_name, date, game_start, location, team1_result, team2_result) {
@@ -312,10 +327,10 @@ app.controller('leagueController', function($scope, $http) {
     $http.post($scope.apiRoot + "adminDeleteSchedule", {
       game_id: game_id
     }).success(function(data){
-      if(data === "success") {
+      if(data.status === "success") {
         $scope.getSchedule();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -341,12 +356,12 @@ app.controller('leagueController', function($scope, $http) {
       team_id: document.getElementById("playerTeam").value,
       player_number: document.getElementById("playerNumber").value
     }).success(function(data){
-      if(data === "success"){
+      if(data.status === "success"){
         $scope.adminGetPlayers();
         $scope.adminPlayerBtn = "Add";
         document.getElementById("playerCreate").reset();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -367,10 +382,10 @@ app.controller('leagueController', function($scope, $http) {
     $http.post($scope.apiRoot + "adminDeletePlayer", {
       player_id: player_id
     }).success(function(data){
-      if(data === "success") {
+      if(data.status === "success") {
         $scope.adminGetPlayers();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -412,10 +427,10 @@ app.controller('leagueController', function($scope, $http) {
       blocks: blocks,
       turnovers: turnovers
     }).success(function(data){
-      if(data === "success"){
+      if(data.status === "success"){
         document.getElementById("createStat").reset();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -430,10 +445,10 @@ app.controller('leagueController', function($scope, $http) {
     $http.post($scope.apiRoot + "adminDeleteUnpaid", {
       record_id: record_id
     }).success(function(data){
-      if(data === "success") {
+      if(data.status === "success") {
         $scope.getUnpaid();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }
@@ -442,10 +457,10 @@ app.controller('leagueController', function($scope, $http) {
     $http.post($scope.apiRoot + "adminPaidUnpaid", {
       record_id: record_id
     }).success(function(data){
-      if(data === "success") {
+      if(data.status === "success") {
         $scope.getUnpaid();
       } else {
-        alert(data);
+        alert(data.message);
       }
     })
   }

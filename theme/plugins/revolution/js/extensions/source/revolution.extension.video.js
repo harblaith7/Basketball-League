@@ -418,11 +418,11 @@ jQuery.extend(true,_R, {
 			opt.youtubestarttime = jQuery.now();
 			addedApis.addedyt=1;
 			var s = document.createElement("script");								
-			s.src = "https://www.youtube.com/iframe_api"; /* Load Player API*/
+			s.src = "Functions::www.youtube.com/iframe_api"; /* Load Player API*/
 			var before = document.getElementsByTagName("script")[0],
 				loadit = true;
 			jQuery('head').find('*').each(function(){
-				if (jQuery(this).attr('src') == "https://www.youtube.com/iframe_api")
+				if (jQuery(this).attr('src') == "Functions::www.youtube.com/iframe_api")
 				   loadit = false;
 			});
 			if (loadit) before.parentNode.insertBefore(s, before);
@@ -438,10 +438,10 @@ jQuery.extend(true,_R, {
 			var f = document.createElement("script"),
 				before = document.getElementsByTagName("script")[0],
 				loadit = true;
-			f.src = "https://secure-a.vimeocdn.com/js/froogaloop2.min.js"; /* Load Player API*/							
+			f.src = "Functions::secure-a.vimeocdn.com/js/froogaloop2.min.js"; /* Load Player API*/							
 
 			jQuery('head').find('*').each(function(){
-				if (jQuery(this).attr('src') == "https://secure-a.vimeocdn.com/js/froogaloop2.min.js")
+				if (jQuery(this).attr('src') == "Functions::secure-a.vimeocdn.com/js/froogaloop2.min.js")
 				   loadit = false;
 			});
 			if (loadit)

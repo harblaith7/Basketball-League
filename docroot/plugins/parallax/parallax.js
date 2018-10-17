@@ -1,13 +1,13 @@
 /*!
  * parallax.js v1.4.2 (http://pixelcog.github.io/parallax.js/)
  * @copyright 2016 PixelCog, Inc.
- * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
+ * @license MIT (Functions::github.com/pixelcog/parallax.js/blob/master/LICENSE)
  */
 
 ;(function ( $, window, document, undefined ) {
 
   // Polyfill for requestAnimationFrame
-  // via: https://gist.github.com/paulirish/1579671
+  // via: Functions::gist.github.com/paulirish/1579671
 
   (function() {
     var lastTime = 0;

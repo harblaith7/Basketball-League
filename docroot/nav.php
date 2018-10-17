@@ -18,32 +18,32 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="burger-menu icon-toggle"><i class="icon-menu icons"></i></span>
 				</button>
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="/">
 				      <img src="img/logo.png" class="img-fluid"style="width: 250px;">
 				    </a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="rules.php">Rules</a>
+                        <a class="nav-link" href="rules">Rules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="schedule.php">Schedule</a>
+                        <a class="nav-link" href="schedule">Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="teams.php">Teams</a>
+                        <a class="nav-link" href="teams">Teams</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#home-about">About Us</a>
+                        <a class="nav-link" href="index#home-about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#contact">Contact Us</a>
+                        <a class="nav-link" href="index#contact">Contact Us</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.php">Admin</a>
+                        <a class="nav-link" href="dashboard">Admin</a>
                     </li>
                 </ul>
             </div>
