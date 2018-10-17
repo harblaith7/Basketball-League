@@ -86,6 +86,6 @@ class AdminController
 
   public static function adminPaidUnpaid(){
     $record_id = $_POST['record_id'];
-    return processUnpaid($record_id);
+    return Functions::processUnpaid($record_id);
   }
 }
